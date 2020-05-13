@@ -1,0 +1,40 @@
+static int __=[](){std::ios::sync_with_stdio(false);return 0;}();
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int j;int c=0;
+        int s=0,sa=0;
+        for(j=0;j<nums.size();j++)
+        {
+            if(nums[j]<0)
+            {
+               c++;
+            }
+            if(nums[j]>0)
+            {
+                  s+=nums[j];
+            }
+
+         }
+            if(c==nums.size())
+            {
+                sort(nums.begin(),nums.end());
+                return nums[nums.size()-1];
+            }
+            else
+            {
+                int k,cs=0;
+               for(k=0;k<nums.size();k++)
+               {
+                  cs+=nums[k];
+                  if(cs<0)
+                  {
+                    cs=0;
+                    continue;
+                  }
+                  sa=fmax(sa,cs);
+               }
+                return sa;
+            }
+    }
+};

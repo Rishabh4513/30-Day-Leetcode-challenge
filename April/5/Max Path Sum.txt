@@ -1,0 +1,26 @@
+#define ll long long int
+#define ibs ios_base::sync_with_stdio(false)
+#define cti cin.tie(0)
+class Solution {
+public:
+    int maxsum(TreeNode *root,int &result)
+    {
+        if(!root)
+            return 0;
+        
+        int l=maxsum(root->left,result);
+        int r=maxsum(root->right,result);
+        //int result=INT_MIN;
+        int sum1=max(max(l,r)+root->val,root->val);
+        int sum21=max(sum1,l+r+root->val);
+        result=max(result,sum21);
+        return sum1;
+    }
+    int maxPathSum(TreeNode* root) {
+        ibs;
+        cti;
+        int result=INT_MIN;
+        maxsum(root,result);
+        return result;
+    }
+};

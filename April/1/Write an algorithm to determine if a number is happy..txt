@@ -1,0 +1,25 @@
+static int __=[](){std::ios::sync_with_stdio(false);return 0;}();
+class Solution {
+public:
+    bool isHappy(int n) {
+        while(true)
+        {
+            int ans=0;
+            while(n!=0)
+            {
+                int ls=n%10;
+                n=n/10;
+                ans=ans+(ls*ls);
+            }
+            if(1<=ans && ans<=9)
+            {
+                if(ans==1 || ans==7)
+                    return true;
+                else
+                    return false;
+            }
+            else 
+                n=ans;
+        }
+    }
+};
