@@ -1,0 +1,59 @@
+class Solution {
+public:
+    void buildLowestNumberRec(string str, int n, string &res) 
+{ 
+    if (n == 0) 
+    { 
+        res.append(str); 
+        return; 
+    } 
+  
+    int len = str.length(); 
+    if (len <= n) 
+        return; 
+  
+    int minIndex = 0; 
+    for (int i = 1; i<=n ; i++) 
+        if (str[i] < str[minIndex]) 
+            minIndex = i; 
+  
+    res.push_back(str[minIndex]); 
+   
+    string new_str = str.substr(minIndex+1, len-minIndex); 
+  
+    buildLowestNumberRec(new_str, n-minIndex, res); 
+} 
+  
+string buildLowestNumber(string str, int n) 
+{ 
+    string res = ""; 
+  
+    buildLowestNumberRec(str, n, res); 
+  
+    return res; 
+} 
+    string removeKdigits(string num, int k) {
+       string ans=buildLowestNumber(num, k); 
+        int n=ans.size();
+        if(ans[0]=='0')
+        {
+            char temp=ans[0];
+            int i=0;
+            while(temp=='0')
+            {
+                i++;
+                temp=ans[i];
+            }
+            string res="";
+            for(;i<n;i++)
+                res=res+ans[i];
+            if(res=="")
+                return "0";
+            return res;
+        }
+        if(ans=="")
+            return "0";
+    return ans; 
+    }
+};
+

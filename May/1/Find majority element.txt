@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n=nums.size();
+        int e1=nums[0];
+        int e1c=1;
+        for(int i=1;i<n;i++)
+        {
+            if(e1==nums[i])
+                e1c++;
+            else if(e1c==0)
+            {
+                e1=nums[i];
+                e1c++;
+            }
+            else
+                e1c--;
+        }
+        int c=0;
+        for(int i=0;i<n;i++)
+            if(nums[i]==e1)
+                c++;
+        return e1;
+    }
+};

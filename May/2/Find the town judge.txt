@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findJudge(int N, vector<vector<int>>& trust) {
+        vector<int>v;
+        int a[1001]={0};
+        for(int i=0;i<trust.size();i++)
+        {
+            v.push_back(trust[i][0]);
+            a[trust[i][1]]++;
+        }
+        sort(v.begin(),v.end());
+        for(int i=1;i<=N;i++)
+        {
+            if(binary_search(v.begin(),v.end(),i)==false)
+            {
+                if(a[i]==(N-1))
+                    return i;
+            }
+        }
+        return -1;
+    }
+};

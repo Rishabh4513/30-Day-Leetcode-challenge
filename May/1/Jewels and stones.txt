@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool fun(string s,char z)
+    {
+        int n=s.size();
+        if(binary_search(s.begin(),s.end(),z)==true)
+            return true;
+        else
+            return false;
+    }
+    int numJewelsInStones(string J, string S) {
+        int c=0;
+        sort(J.begin(),J.end());
+        for(int i=0;i<S.size();i++)
+        {
+            if(fun(J,S[i])==true)
+                c++;
+        }
+        return c;
+    }
+};

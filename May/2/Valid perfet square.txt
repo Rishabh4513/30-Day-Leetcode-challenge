@@ -1,0 +1,23 @@
+#define ibs ios_base::sync_with_stdio(false)
+#define cti cin.tie(0)
+#define ll long long int
+class Solution {
+public:
+    bool isPerfectSquare(ll num) {
+        ibs;
+        cti;
+        ll l=1;
+        ll h=num;
+        while(l<=h)
+        {
+            ll m=l+(h-l)/2;
+            if((m*m)==num)
+                return true;
+            else if((m*m)>num)
+                h=m-1;
+            else
+                l=m+1;
+        }
+        return false;
+    }
+};
