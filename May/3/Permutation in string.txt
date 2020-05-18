@@ -1,0 +1,52 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        bool f=true;
+        if(s1.size()>s2.size())
+            return false;
+        int n=s1.size();
+        int m=s2.size();
+        char m1[10000];
+        char m2[10000];
+        for(char i='a';i<='z';i++)
+        {
+            m1[i]=0;
+            m2[i]=0;
+        }
+        for(int i=0;i<n;i++)
+            m1[s1[i]]++;
+        for(int i=0;i<n;i++)
+        {
+            m2[s2[i]]++;
+        }
+        for(char i='a';i<='z';i++)
+        {
+            if(m1[i]!=m2[i])
+            {
+                f=false;
+                break;
+            }
+        }
+        if(f==true)
+             return f;
+        int j=n;
+        for(int i=1;i<=m-n;i++)
+        {
+            m2[s2[j]]++;
+            m2[s2[i-1]]--;
+            bool x=true;
+            for(char j='a';j<='z';j++)
+            {
+                if(m1[j]!=m2[j])
+                {
+                    x=false;
+                    break;
+                }
+            }
+            if(x==true)
+                return x;
+            j++;
+        }
+        return false;
+    }
+};
