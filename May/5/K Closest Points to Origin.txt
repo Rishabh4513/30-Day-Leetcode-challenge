@@ -1,0 +1,26 @@
+class Solution {
+public:
+    #define pb push_back
+    int getdist(int x,int y)
+    {
+        x=x*x;
+        y=y*y;
+        return (x+y);
+    }
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        vector<vector<int>>ans;
+        vector<int>k;
+        multimap<int,int>m;
+        for(int i=0;i<points.size();i++)
+        {
+            int x=points[i][0];
+            int y=points[i][1];
+            int h=getdist(x,y);
+            k.pb(h);
+            m.insert(pair<int,int>(h,i));
+        }
+        for(auto it=m.begin();K>0;it++,K--) 
+         ans.push_back(points[it->second]);
+        return ans;
+    }
+};
